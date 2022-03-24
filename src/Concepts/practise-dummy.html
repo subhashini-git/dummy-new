@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title> Practise</title>
+</head>
+
+<body>
+  <input type="text" id="searchBox" />
+  <p>Number of times the user Entered</p>
+  <p id="user-id"></p>
+  <p>Number of times the API calls are limited</p>
+  <p id="api-call-id"></p>
+
+  <label for="Vehicle">Choose a Vehicle</label>
+  <select id="select-Id">
+    <optgroup label="SwedishCars">
+      <option value="car">Car</option>
+      <option value="truck">Truck</option>
+      <option value="bycycle">Cycle</option>
+      <option value="plane">Plane</option>
+    </optgroup>
+  </select>
+
+  <div> Selected options</div>
+  <div id='user-option'></div>
+
+  <br>
+  <label>Select Gender</label><br>
+
+  <div id="checkBoxId">
+    <input type="checkbox" name="category" value="male" id="male" />
+    <label for="male">Male</label><br>
+    <input type="checkbox" name="category" value="female" id="fem" />
+    <label for="Female">Female</label><br>
+    <input type="checkbox" name="category" value="None" id="non" />
+    <label for="None">None</label>
+  </div>
+  <div id="checkBoxSelect"></div>
+  <button id="checked">Checked</button>
+  <br>
+
+  <br>
+  <label>Select the preffered language:</label>
+  <br>
+
+
+
+  <input type="radio" name="lang" value="html" />
+  <label for="html">HTML</label> <br>
+  <input type="radio" name="lang" value="CSS">
+  <label for="CSS">CSS</label><br>
+  <input type="radio" name="lang" value="JS">
+  <label for="JS">JS</label><br>
+  <button id="submit">Submit</button>
+  <div id="radioChoice"></div>
+  <br>
+  <label>Select Size:</label>
+  <div id="groupSizes"></div>
+  <div id="submitGroup"></div>
+
+  <script src="Debouncing.js"></script>
+
+
+  <ul id="menu">
+    <li> subha</li>
+  </ul>
+  
+  <script>
+    //for duynamic radio options
+    let sizes = ['S', 'M', 'L', 'XL'];
+
+    let groupSizes = document.getElementById("groupSizes");
+    let submitGroup = document.getElementById("submitGroup");
+
+
+    groupSizes.innerHTML = sizes.map((size) => `<div>
+    <input type="radio" name="sizes" value=${size} id=${size}/>
+    <label for=${size}>${size} </label>
+    </div> `).join('');
+
+    let elements = document.querySelectorAll('input[name=sizes]');
+
+    groupSizes.addEventListener('change', (e) => {
+      for (ele of elements) {
+        if (ele.checked)
+          submitGroup.textContent = ele.value
+      }
+    })
+
+    // for the checkboxes 
+    let ele = [];
+    const checkBoxes = document.querySelectorAll('input[name="category"]');
+
+    const checkBoxSelect = document.getElementById('checkBoxSelect');
+    const btn1 = document.getElementById('checked')
+
+    btn1.addEventListener("click", (e) => {
+      console.log("inside the button", checkBoxes);
+      toggle();
+    })
+
+    function toggle() {
+      for (checkBox of checkBoxes) {
+        if (checkBox.checked) {
+          checkBox.checked = false;
+        }
+        else {
+          checkBox.checked = true;
+        }
+        //instead of above if and else;
+        //checkBox.checked =!checkBox.checked;
+
+      }
+    }
+
+    let randomEle = document.getElementById('male');
+    console.log(randomEle.parentNode)
+    console.log(document.getElementsByName('category'))
+    console.log(document.getElementsByTagName('div'))
+
+
+    let div = document.createElement("div");
+    div.id = "created";
+    div.className = ".create";
+    div.textContent = "yesy it is crated ";
+
+    document.body.appendChild(div);
+
+    let li = document.createElement('li');
+    li.textContent = "this is the link";
+
+    let menu = document.querySelector("#menu");
+    menu.appendChild(li);
+  </script>
+
+  
+</body>
+
+</html>
